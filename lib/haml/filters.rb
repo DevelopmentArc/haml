@@ -212,8 +212,10 @@ RUBY
           type = " type=#{options[:attr_wrapper]}text/javascript#{options[:attr_wrapper]}"
         end
 
-        text = text.rstrip
-        text.gsub!("\n", "\n#{indent}")
+        if text
+          text = text.rstrip
+          text.gsub!("\n", "\n#{indent}")
+        end
 
         %!<script#{type}>\n#{"  //<![CDATA[\n" if options[:cdata]}#{indent}#{text}\n#{"  //]]>\n" if options[:cdata]}</script>!
       end
@@ -233,8 +235,10 @@ RUBY
           type = " type=#{options[:attr_wrapper]}text/css#{options[:attr_wrapper]}"
         end
 
-        text = text.rstrip
-        text.gsub!("\n", "\n#{indent}")
+        if text
+          text = text.rstrip
+          text.gsub!("\n", "\n#{indent}")
+        end
 
         %(<style#{type}>\n#{"  /*<![CDATA[*/\n" if options[:cdata]}#{indent}#{text}\n#{"  /*]]>*/\n" if options[:cdata]}</style>)
       end
